@@ -1,0 +1,13 @@
+services:
+  retrain:
+    build: ./train
+    container_name: retrain-dev
+    env_file:
+      - ./env/.env
+    networks:
+      - mlflow-shared-net
+
+networks:
+  mlflow-shared-net:
+    external: true
+    name: mlflow-shared-net
