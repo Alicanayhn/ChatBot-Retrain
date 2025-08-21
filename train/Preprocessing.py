@@ -1,5 +1,5 @@
+import json
 def text_to_jsonl_dataset(metin, chunk_size=1024):
-    import json
     chunks = [metin[i:i+chunk_size] for i in range(0, len(metin), chunk_size)]
     jsonl_list = []
     for chunk in chunks:

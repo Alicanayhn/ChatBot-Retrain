@@ -1,1 +1,20 @@
+name: Actions for Retrain
 
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+        - main
+
+jobs:
+  upload_files:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        
+        - name: Create env folder
+          run : |
+            mkdir env
+        
+        - name: Set env variables
+          run: echo "${{secrets.ENV_FILE}}" > env/.env

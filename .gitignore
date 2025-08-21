@@ -1,3 +1,6 @@
+#Model
+train/distilbert/distilgpt2/model.safetensors
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
