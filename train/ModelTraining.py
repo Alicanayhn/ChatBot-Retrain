@@ -50,7 +50,7 @@ def finetune(model, tokenizer, tokenized_dataset, output_dir="./distilgpt2-finet
         mlflow.log_params({
             "epochs": 3,
             "batch_size": 2,
-            "fp16": fp16_mode
+            "fp16": False
         })
 
         # eval_result = trainer.evaluate()
