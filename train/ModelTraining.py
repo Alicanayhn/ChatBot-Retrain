@@ -5,17 +5,19 @@ from transformers import TrainingArguments, Trainer, AutoModelForCausalLM, AutoT
 # fp16_mode = torch.cuda.is_available()
 
 def load_distilgpt2_model(model_name="distilbert/distilgpt2"):
-    # try:
-    #     MODEL_URI = "models:/distilgpt2-chatbot@prod"
-    #     model = mlflow.pytorch.load_model(MODEL_URI)
-    #     tokenizer = AutoTokenizer.from_pretrained("distilgpt2")
+    print("Model Yükleniyor")
+    try:
+        MODEL_URI = "models:/distilgpt2-chatbot@prod"
+        model = mlflow.pytorch.load_model(MODEL_URI)
+        tokenizer = AutoTokenizer.from_pretrained("distilgpt2")
 
-    #     return model, tokenizer
-    # except:
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForCausalLM.from_pretrained(model_name)
+        return model, tokenizer
+    
+    except:
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model = AutoModelForCausalLM.from_pretrained(model_name)
 
-    return model, tokenizer
+        return model, tokenizer
 
 def finetune(model, tokenizer, tokenized_dataset, output_dir="./distilgpt2-finetuned"):
     print("Fine Tuning Başlıyor")

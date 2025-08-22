@@ -39,7 +39,7 @@ Base.prepare(engine=engine, reflect=True, schema="public")
 Used_files = Base.classes.used_files
 
 def get_all_s3_keys():
-    print("s3 dosyaları alınıyor")
+    print("S3 dosyaları alınıyor")
     s3_client = boto3.client('s3',
         aws_access_key_id=AWS_ACCESS_KEY_ID,
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
@@ -94,7 +94,7 @@ def start_training():
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     contents_keys = get_all_s3_keys()
     used_filenames = get_all_used_files()
-
+    print("Dosya kontrolü yapılıyor")
     not_trained = [filename for filename in contents_keys if filename not in used_filenames]
 
     if(not not_trained):
@@ -112,7 +112,7 @@ def start_training():
         # thread = threading.Thread(target=background_finetune, args=(text,))
         # thread.start()
         background_finetune(text)
-        
+
         used_file = Used_files(filename=object_name)
         db.add(used_file)
         db.commit()
